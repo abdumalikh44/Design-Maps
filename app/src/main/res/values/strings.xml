@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">FIRMS</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="GoogleApi">AIzaSyDOKGkPzescc_D7oF96zkE1uzgg-zMSpFQ</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
