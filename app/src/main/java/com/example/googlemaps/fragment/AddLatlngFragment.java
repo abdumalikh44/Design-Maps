@@ -31,7 +31,7 @@ public class AddLatlngFragment extends Fragment {
 
 
     public AddLatlngFragment() {
-        // Required empty public constructor
+
     }
 
 
