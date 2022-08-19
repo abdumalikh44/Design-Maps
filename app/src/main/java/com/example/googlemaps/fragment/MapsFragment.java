@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -69,8 +70,31 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         mapInitialize();
 
 
+        binding.next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String latValue = binding.Latitude.getText().toString();
+                String longValue = binding.Latitude.getText().toString();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("latitude", latValue);
+                bundle.putString("longitude", longValue);
+
+
+                Fragment fragment = new AddLatlngFragment();
+                fragment.setArguments(bundle);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                        .beginTransaction();
+                transaction.replace(R.id.container, fragment)
+                        .addToBackStack("name")
+                        .setReorderingAllowed(true)
+                        .commit();
+            }
+        });
         return binding.getRoot();
     }
+
 
     private void mapInitialize() {
         LocationRequest locationRequest = new LocationRequest();
@@ -213,6 +237,8 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+
+                    binding.next.setVisibility(View.VISIBLE);
 
                 }
 

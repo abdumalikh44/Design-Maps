@@ -119,7 +119,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             double latitude = address.getLatitude();
             double longitude = address.getLongitude();
             gotoLatlng(latitude, longitude, 17f);
-            if(marker != null){
+            /*if(marker != null){
                 marker.remove();
             }
             //Untuk membuat penanda lokasi
@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             markerOptions.draggable(true);
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             markerOptions.position(new LatLng(latitude, longitude));
-            marker  = nMap.addMarker(markerOptions);
+            marker  = nMap.addMarker(markerOptions);*/
 
 
         }
@@ -136,6 +136,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
     private void gotoLatlng(double latitude, double longitude, float v) {
         LatLng latLng = new LatLng(latitude, longitude);
+        /*binding.Latitude.setText(String.valueOf(latLng.latitude));
+        binding.Longitude.setText(String.valueOf(latLng.longitude));*/
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(latLng, 17f);
         nMap.animateCamera(update);
     }
@@ -183,7 +185,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                     }
                 }).check();
 
-        if(nMap != null){
+        /*if(nMap != null){
             nMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener(){
 
                 @Override
@@ -215,7 +217,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
                 }
             });
 
-        }
+        }*/
 
     }
 }

@@ -16,6 +16,7 @@
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#EAEAEA"
         android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
@@ -109,9 +110,18 @@
 
         </FrameLayout>
 
-
-
     </LinearLayout>
+
+        <Button
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:layout_margin="@dimen/_10mdp"
+            android:id="@+id/next"
+            android:backgroundTint="@android:color/holo_orange_light"/>
+
+
 
     </LinearLayout>
 
