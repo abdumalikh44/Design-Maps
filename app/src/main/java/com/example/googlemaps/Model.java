@@ -11,6 +11,8 @@ public class Model {
 
     }
 
+
+
     public Model(String address, String addressTwo, String headLine, String description, Double latitude, Double longitude) {
         Address = address;
         AddressTwo = addressTwo;

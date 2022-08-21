@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragment.MapsFragment" />
-    <!--AlignParentBottom - Untuk membuat search kebawah-->
     <LinearLayout
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
