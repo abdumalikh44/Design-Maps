@@ -19,6 +19,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.googlemaps.Model;
 import com.example.googlemaps.R;
 import com.example.googlemaps.databinding.FragmentHomeBinding;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -35,6 +36,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -55,6 +61,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     private Marker marker;
     private MarkerOptions markerOptions;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
 
     public HomeFragment() {
     }
@@ -62,6 +71,9 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -72,6 +84,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("post");
 
         mapInitialize();
 
@@ -157,6 +171,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
 
                             return;
                         }
+
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                    Model model = dataSnapshot.getValue(Model.class);
+                                    LatLng latLng = new LatLng(model.getLatitude(), model.getLongitude());
+                                    markerOptions = new MarkerOptions();
+                                    markerOptions.position(latLng)
+                                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                                    marker = nMap.addMarker(markerOptions);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+
                         nMap.setMyLocationEnabled(true);
                         fusedLocationProviderClient.getLastLocation().addOnFailureListener(new OnFailureListener() {
                             @Override

@@ -75,7 +75,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
             public void onClick(View view) {
 
                 String latValue = binding.Latitude.getText().toString();
-                String longValue = binding.Latitude.getText().toString();
+                String longValue = binding.Longitude.getText().toString();
 
                 Bundle bundle = new Bundle();
                 bundle.putString("latitude", latValue);

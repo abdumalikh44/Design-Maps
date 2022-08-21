@@ -131,7 +131,7 @@
                 android:background="@color/common_google_signin_btn_text_light" />
 
             <Button
-                android:id="@+id/submit"
+                android:id="@+id/Submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/teal_700"

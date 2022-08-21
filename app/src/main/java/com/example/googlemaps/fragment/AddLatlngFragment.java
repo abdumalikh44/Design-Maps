@@ -61,19 +61,19 @@ public class AddLatlngFragment extends Fragment {
         binding.Latitude2.setText(latValue);
         binding.Longitude2.setText(longValue);
 
-        binding.submit.setOnClickListener(new View.OnClickListener() {
+        binding.Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 progressDialog.show();
 
                 Model post = new Model();
-                post.setLatitude(binding.Latitude2.getText().toString().trim());
-                post.setLongitude(binding.Longitude2.getText().toString().trim());
+                post.setLatitude(Double.parseDouble(binding.Latitude2.getText().toString().trim()));
+                post.setLongitude(Double.parseDouble(binding.Longitude2.getText().toString().trim()));
                 post.setAddress(binding.Address.getText().toString().trim());
                 post.setAddressTwo(binding.AddressTwo.getText().toString().trim());
                 post.setHeadLine(binding.HeadLine.getText().toString().trim());
-                post.setDescription(binding.description.getText().toString().trim());
+                post.setDescription(binding.Description.getText().toString().trim());
 
                 firebaseDatabase.getReference().child("post").push().setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
