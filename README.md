@@ -1,2 +1,2 @@
-# Simple-Maps
-A clone of Google Maps
+# MyMaps
+A simple maps
