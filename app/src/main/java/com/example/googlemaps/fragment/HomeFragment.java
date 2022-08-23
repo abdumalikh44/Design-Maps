@@ -143,6 +143,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback {
             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
             markerOptions.position(new LatLng(latitude, longitude));
             marker  = nMap.addMarker(markerOptions);*/
+            /*TestOut*/
 
 
         }
